@@ -18,4 +18,45 @@ Performed git commit
 ggplot(df, aes(Long, Lat, colour = TierID)) +
   geom_point() + theme_void()
 ```
+```{r}
+library(sf)
+
+wildschwein_BE_sf <- st_as_sf(df, 
+                              coords = c("Long", "Lat"), 
+                              crs = 4326)
+```
+
+# Task 3
+```{r}
+wildschwein_BE_grouped <- group_by(wildschwein_BE_sf, TierID)
+
+wildschwein_BE_smry <- summarise(wildschwein_BE_grouped)
+
+df2 <- head(wildschwein_BE_sf, 10000)
+grouped_df <- group_by(df2, TierID)
+summary_df <- summarise(grouped_df)
+
+
+
+mcp <- st_convex_hull(wildschwein_BE_smry)
+
+plot(mcp)
+```
+
+# Working with Raster Data
+Mein code ist cool.
+```{r}
+library(terra)
+
+pk100_BE <- terra::rast("pk100_BE.tif")
+plot(pk100_BE)
+
+```
+# Add background map
+```{r}
+library(tmap)
+tmap_mode("view")
+tm_shape(pk100_BE) + 
+  tm_rgb() 
+```
 
