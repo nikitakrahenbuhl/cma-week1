@@ -1,0 +1,21 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+library(tidyverse)
+df <- read_csv("wildschwein_BE.csv")
+
+
+```
+
+Performed git commit
+
+```{r}
+ggplot(df, aes(Long, Lat, colour = TierID)) +
+  geom_point() + theme_void()
+```
+
