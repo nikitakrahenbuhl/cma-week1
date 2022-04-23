@@ -24,6 +24,10 @@ library(sf)
 wildschwein_BE_sf <- st_as_sf(df, 
                               coords = c("Long", "Lat"), 
                               crs = 4326)
+?st_transform
+wildschwein_BE_sf_lv95 <- st_transform(wildschwein_BE_sf, crs = 2056)
+
+
 ```
 
 # Task 3
